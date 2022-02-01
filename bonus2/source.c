@@ -1,11 +1,12 @@
-char language[2]; //0x8049988
+int language; //0x8049988
+
 void greetuser(char *s)
 {
-	//variable 46 66?
-//met de la place pour 88
+	char buffer[72];
+	
 	if (language == 1) //+11 +14
 	{
-		buffer = "Hyv\303\244\303\244 p\303\244iv\303\244\303\244 "; //+54
+		buffer = "Hyvää päivää "; //+54
 	}
 	else if (language == 2) //+16 +19
 	{
@@ -13,39 +14,31 @@ void greetuser(char *s)
 	}
 	else if (language == 0) //+25
 	{
-		buffer = "Hello";
+		buffer = "Hello ";
 	}
 	strcat(buffer, s); //+147
 	puts(buffer); //+158
 }
-int main(void)
+
+int main(int ac, char *av)
 {
-	char buffer[73]; //0xbffffee3
-	char buf[2];
+	char buffer[72]; //0x50
+	char *truc; //0x9c
+
 	if (ac != 3) //+15 +26
-	{
 		return 1;
-	}
 
-	strncpy(&buffer[80], av[1], 40);//+51 +78
+	strncpy(&buffer[0], av[1], 40);//+51 +78
+	strncpy(&buffer[40], av[2], 32);//+83 +113
 
-	strncpy(&buffer[120], av[2], 32);//+83 +113
-
-	if (getenv("LANG") == 0) //+118 +145
+	truc = getenv("LANG"); //+118 +145
+	if (truc)
 	{
-		return (19); // ??
+		if (memcmp(truc,"fi", 2) == 0) //+147 +173
+			language = 1;
+		else if (memcmp(truc, "nl", 2) == 0) //+194 +220
+			language = 2;
+		greetuser(buffer); //+258
 	}
-
-	if (memcmp(buffer,"fi", 2) == 0)//+147 +173   0x804873d
-	{
-		return (19); // ???
-	}
-	if (memcmp(buffer, "nl", 2) == 0)//+194 +220 0x8048740
-	{
-		return (19);
-	}
-
-	greetuser(buffer);//		+258
-
-	return 0;
+	return (19);
 }
