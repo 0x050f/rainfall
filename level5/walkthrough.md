@@ -4,9 +4,11 @@
 
 see source.c
 
-## Analysis
+## Exploit
 
-Still a format string exploit but we don't have any global variable to edit but we know that we have to jump on the 'o' function. If we try to modify a offset on the PT_LOAD of the program (at the runtime ofc), we gonna segfault so we have to modify something that is writable like the data section. Fortunately, the exit function called after printf use the data section to set the address of the exit function so we're going to rewrite it :)
+
+The program is vulnerable to the format string exploit and contains a function 'o' that launches a shell as level6, but this functions is not called. This time we are rewriting the address of the exit function to jump to the function 'o'.
+
 
 + 0x8049838: offset of the modification
 + 0x080484a4 - 34 <payload size without padding> = 134513794
