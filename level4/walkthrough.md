@@ -4,7 +4,7 @@
 
 see source.c
 
-## Analysis
+## Exploit
 
 The principle was the same as level3 (see walkthrough level3), although the value of m had to be greater than the buffer size.
 
