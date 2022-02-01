@@ -1,10 +1,10 @@
 # Walkthrough
 
-## Disassembly executable
+## Disassembling the executable
 
 see source.c
 
-## Analysis
+## Exploit
 
 After the disasembly we see that auth isn't set to NULL when we used 'reset' option. So auth still point to the same space of memory as before. Then we allocate more space with a longer string using strdup on service so service and auth point on the same location. Then we call login and here we are '/bin/sh'.
 
