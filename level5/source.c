@@ -1,9 +1,11 @@
-void	o() // 0x080484a4
+void	o()
 {
 	system("/bin/sh");
 	exit(1);
 }
-void	n() {
+
+void	n()
+{
 	char buffer[520];
 	fgets(buffer, 512, stdin);
 	printf(buffer);
