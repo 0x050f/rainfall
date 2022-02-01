@@ -1,6 +1,6 @@
 # Walkthrough
 
-## Disassembling executable 
+## Disassembling the executable 
 
 see source.c
 
