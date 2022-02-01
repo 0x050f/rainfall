@@ -6,6 +6,8 @@ see source.c
 
 The executable calls the gets function on a buffer of 0x40. According to the man, this (deprecated) function reads a line from stdin. There is no check of the size of the input read, so we can easily do a buffer overflow.
 
+## Step 2: Exploit
+
 To exploit this executable, we use the buffer overflow to rewrite the eip register in order to jump to a function that launches a shell as level2.
 
 ```
